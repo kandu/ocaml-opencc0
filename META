@@ -1,0 +1,7 @@
+name= "opencc"
+version = "0.4.3-0.1.1"
+description = "conversion between Traditional and Simplified Chinese"
+requires="ctypes.foreign"
+archive(byte)= "opencc.cma"
+archive(native)= "opencc.cmxa"
+
