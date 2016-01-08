@@ -1,5 +1,37 @@
+(** OCaml OpenCC, bindings for opencc - Open Chinese Convert
+
+  Open Chinese Convert (OpenCC, 開放中文轉換) is an opensource project for conversion between Traditional Chinese and Simplified Chinese, supporting character-level conversion, phrase-level conversion, variant conversion and regional idioms among Mainland China, Taiwan and Hong kong. *)
+
+(** {6 interface} *)
+
 type t
-type conversion = Fast | SegmentOnly | ListCandidates
+(** the type of opencc instances *)
+
+(** the type of opencc conversion modes *)
+type conversion =
+  | Fast
+  | SegmentOnly
+  | ListCandidates
+
 val create : string -> t
+(** [Opencc.create config] creates a new opencc instance. [config] should be the path of the appropriate config file. *)
+
 val convert_utf8 : t -> string -> string
+(** [Opencc.convert_utf8 opencc text] returns the converted string. [text] is UTF-8 encoded input string. *)
+
 val set_conversion_mode : t -> conversion -> unit
+(** [Opencc.set_conversion_mode opencc mode] changes the conversion [mode] of [opencc]. *)
+
+
+
+(** {6 example}
+On a debian x86_64 system, the source code below:
+{[
+let ()=
+  let opencc= Opencc.create "/usr/lib/x86_64-linux-gnu/opencc/zhs2zht.ini" in
+  Opencc.set_conversion_mode opencc Opencc.Fast;
+  print_endline (Opencc.convert_utf8 opencc "汉字");;
+]}
+
+will print out {b 漢字}
+*)
