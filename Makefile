@@ -1,29 +1,22 @@
-PROJECT= opencc
+default:
+	dune build
 
-CC= gcc
-
-lib: opencc.cma opencc.cmxa
-
-opencc.cma: opencc.ml
-	ocamlfind ocamlc -package ctypes.foreign -a -o $@ $^
-
-opencc.cmxa: opencc.ml
-	ocamlfind ocamlopt -package ctypes.foreign -a -o $@ $^
-
-opencc.ml: opencc.cmi
-
-
-opencc.cmi: opencc.mli
-	ocamlfind ocamlc -package ctypes.foreign $<
-
-.PHONY: install clean
-
-install: lib
-	ocamlfind install $(PROJECT) META *.mli *.cmi *.cma *.cmxa *.a
+install:
+	dune install
 
 uninstall:
-	ocamlfind remove $(PROJECT)
+	dune uninstall
+
+doc:
+	dune build @doc
 
 clean:
-	rm -f *.annot *.o *.cm* *.a *.so
+	dune clean
+
+runtest:
+	dune runtest
+
+all-supported-ocaml-versions:
+	dune build @install --workspace dune-workspace.4.02.dev --root .
+	dune build @install @runtest --workspace dune-workspace.dev --root .
 

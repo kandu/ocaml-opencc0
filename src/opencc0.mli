@@ -2,7 +2,7 @@
 
   Open Chinese Convert (OpenCC, 開放中文轉換) is an opensource project for conversion between Traditional Chinese and Simplified Chinese, supporting character-level conversion, phrase-level conversion, variant conversion and regional idioms among Mainland China, Taiwan and Hong kong. *)
 
-(** {6 interface} *)
+(** {2 interface} *)
 
 type t
 (** the type of opencc instances *)
@@ -24,8 +24,8 @@ val set_conversion_mode : t -> conversion -> unit
 
 
 
-(** {6 example}
-On a debian x86_64 system, the source code below:
+(** {2 example}
+On a debian jessie x86_64 system, the source code below:
 {[
 let ()=
   let opencc= Opencc.create "/usr/lib/x86_64-linux-gnu/opencc/zhs2zht.ini" in
