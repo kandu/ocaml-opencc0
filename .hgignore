@@ -11,4 +11,7 @@ syntax: glob
 **/*.a
 **/*.so
 **/*.cm*
+_build
+.merlin
+opencc0.install
 
