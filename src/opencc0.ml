@@ -5,7 +5,7 @@ module Stub = struct
   type t= unit ptr
   let t: t typ= ptr void
 
-  let libopencc= Dl.(dlopen ~filename:"libopencc.so" ~flags:[RTLD_NOW])
+  let libopencc= Dl.(dlopen ~filename:"libopencc.so.1" ~flags:[RTLD_NOW])
 
   let create=
     foreign ~from:libopencc "opencc_open"
