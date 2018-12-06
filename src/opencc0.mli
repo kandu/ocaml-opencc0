@@ -14,13 +14,13 @@ type conversion =
   | ListCandidates
 
 val create : string -> t
-(** [Opencc.create config] creates a new opencc instance. [config] should be the path of the appropriate config file. *)
+(** [Opencc0.create config] creates a new opencc instance. [config] should be the path of the appropriate config file. *)
 
 val convert_utf8 : t -> string -> string
-(** [Opencc.convert_utf8 opencc text] returns the converted string. [text] is UTF-8 encoded input string. *)
+(** [Opencc0.convert_utf8 opencc text] returns the converted string. [text] is UTF-8 encoded input string. *)
 
 val set_conversion_mode : t -> conversion -> unit
-(** [Opencc.set_conversion_mode opencc mode] changes the conversion [mode] of [opencc]. *)
+(** [Opencc0.set_conversion_mode opencc mode] changes the conversion [mode] of [opencc]. *)
 
 
 
@@ -28,9 +28,9 @@ val set_conversion_mode : t -> conversion -> unit
 On a debian jessie x86_64 system, the source code below:
 {[
 let ()=
-  let opencc= Opencc.create "/usr/lib/x86_64-linux-gnu/opencc/zhs2zht.ini" in
-  Opencc.set_conversion_mode opencc Opencc.Fast;
-  print_endline (Opencc.convert_utf8 opencc "汉字");;
+  let opencc= Opencc0.create "/usr/lib/x86_64-linux-gnu/opencc/zhs2zht.ini" in
+  Opencc0.set_conversion_mode opencc Opencc0.Fast;
+  print_endline (Opencc0.convert_utf8 opencc "汉字");;
 ]}
 
 will print out {b 漢字}
